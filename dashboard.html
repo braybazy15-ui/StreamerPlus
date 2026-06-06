@@ -506,6 +506,7 @@
             }
         }
     </style>
+    <script src="js/auth-check.js"></script>
 </head>
 <body>
 
@@ -690,10 +691,7 @@
 
             // اگر کاربر لاگین نکرده، برگرد به index.html
             const userData = getUserData();
-            if (!userData || !userData.fullName) {
-                window.location.href = 'index.html';
-                return;
-            }
+            if (!userData) return;
 
             // نمایش نام کاربر
             userNameDisplay.textContent = userData.fullName;
