@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>خوش آمدید | آکادمی پایتون بردیا فاتحی</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --green: #2b9348;
+            --green-dark: #1f6e34;
+            --green-light: #e6f4ea;
+            --gold: #f0a500;
+            --gold-light: #fff8e7;
+            --dark: #1f2b3a;
+            --text: #2c3e4e;
+            --text-light: #5a6e85;
+            --bg: #f0f4fa;
+            --white: #ffffff;
+            --radius: 2rem;
+            --radius-sm: 1.5rem;
+            --radius-xs: 1rem;
+            --shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, #e8f0fe 0%, #f0f4fa 30%, #e2e8f0 70%, #dce5f5 100%);
+            min-height: 100vh;
+            padding: 1.5rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ذرات پس‌زمینه */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--green);
+            opacity: 0.12;
+            animation: floatUp 8s infinite ease-in;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.15;
+            }
+            90% {
+                opacity: 0.08;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 750px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* کارت اصلی */
+        .welcome-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem 2.2rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            text-align: center;
+            animation: cardEntry 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: -60px;
+            width: 180px;
+            height: 180px;
+            background: var(--green-light);
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        .welcome-card::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 140px;
+            height: 140px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        .welcome-card>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes cardEntry {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* آیکون خوش‌آمد */
+        .welcome-icon {
+            font-size: 4rem;
+            animation: bounce 2s infinite;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-18px);
+            }
+            60% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* تیتر */
+        .welcome-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
+        }
+        .welcome-title .highlight {
+            background: linear-gradient(120deg, var(--green-light) 0%, #c8e6d0 100%);
+            padding: 0.15rem 0.7rem;
+            border-radius: 2rem;
+            color: var(--green-dark);
+            display: inline-block;
+        }
+
+        /* پیام خوش‌آمد */
+        .welcome-message {
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 2;
+            margin: 1.2rem 0 1.8rem;
+            text-align: justify;
+            background: #fafcfd;
+            padding: 1.2rem 1.5rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid #eef2f8;
+            border-right: 4px solid var(--green);
+            animation: fadeInMsg 1s 0.3s both;
+        }
+        @keyframes fadeInMsg {
+            0% {
+                opacity: 0;
+                transform: translateX(-15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .welcome-message .emoji-spark {
+            animation: sparkle 1.5s infinite;
+            display: inline-block;
+        }
+        @keyframes sparkle {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        /* باکس دریافت نام */
+        .name-input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0 1rem;
+        }
+        .name-label {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .name-input-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+        .name-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 1.1rem;
+            border: 2px solid #dce5f0;
+            border-radius: 3rem;
+            outline: none;
+            transition: var(--transition);
+            background: #f9fbfe;
+            text-align: center;
+            color: var(--dark);
+        }
+        .name-input:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 6px rgba(43, 147, 72, 0.08);
+            background: white;
+        }
+        .name-input::placeholder {
+            color: #bcc7d4;
+            font-size: 0.9rem;
+        }
+        .input-underline {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--green);
+            border-radius: 0 0 3rem 3rem;
+            transition: width 0.4s ease;
+        }
+        .name-input:focus~.input-underline {
+            width: 70%;
+        }
+
+        /* دکمه شروع */
+        .start-btn {
+            background: linear-gradient(95deg, #2b9348, #238b3f);
+            border: none;
+            padding: 1rem 3rem;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: white;
+            border-radius: 3rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 22px rgba(35, 139, 63, 0.35);
+            margin-top: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(35, 139, 63, 0.45);
+            background: linear-gradient(95deg, #20813c, #1c6e34);
+        }
+        .start-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .start-btn .btn-shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+        .start-btn:hover .btn-shine {
+            left: 150%;
+        }
+
+        /* متن خطا */
+        .error-msg {
+            color: #d94535;
+            font-size: 0.85rem;
+            font-weight: 500;
+            min-height: 1.5rem;
+            transition: var(--transition);
+            opacity: 0;
+        }
+        .error-msg.show {
+            opacity: 1;
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-6px);
+            }
+            50% {
+                transform: translateX(6px);
+            }
+            75% {
+                transform: translateX(-4px);
+            }
+        }
+
+        /* Toast */
+        .toast-notify {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: linear-gradient(115deg, #1f3b2c, #113a25);
+            color: #f3fff9;
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 20px 30px -12px black;
+            z-index: 1000;
+            opacity: 0;
+            transition: 0.25s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .toast-notify.show {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        /* فوتر */
+        .footer-box {
+            margin-top: 1.5rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(6px);
+            border-radius: 2rem;
+            padding: 0.9rem 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            animation: fadeInMsg 1s 0.6s both;
+        }
+        .footer-text {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        .footer-text span {
+            color: #1f6e3f;
+            font-weight: 800;
+            background: #eafaf1;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            display: inline-block;
+        }
+        .support-link {
+            color: #2b9348;
+            font-weight: 600;
+            text-decoration: none;
+            direction: ltr;
+            display: inline-block;
+            margin-top: 0.3rem;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .support-link:hover {
+            color: #1c6e34;
+            text-decoration: underline;
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 600px) {
+            .welcome-card {
+                padding: 1.8rem 1.2rem;
+            }
+            .welcome-title {
+                font-size: 1.4rem;
+            }
+            .welcome-message {
+                font-size: 0.9rem;
+                padding: 1rem;
+            }
+            .name-input {
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+            .start-btn {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ذرات پس‌زمینه -->
+    <div class="particles" id="particles"></div>
+
+    <!-- کانتینر اصلی -->
+    <div class="container">
+        <div class="welcome-card">
+            <!-- آیکون -->
+            <div class="welcome-icon">🐍</div>
+
+            <!-- تیتر -->
+            <h1 class="welcome-title">
+                📚 به <span class="highlight">دوره پایتون مقدماتی</span> آکادمی بردیا فاتحی خوش اومدید
+                <span class="emoji-spark">😙</span>
+            </h1>
+
+            <!-- پیام خوش‌آمد -->
+            <div class="welcome-message">
+                <p>
+                    توی این دوره، ما در کنار هم هستیم، تا برنامه‌نویسی رو از <strong>صفر کامل</strong> یاد بگیریم،
+                    با <strong>پایتون</strong> کار کنیم و مفاهیم اصلی پایتون رو <strong>صفر تا صد</strong> یاد بگیریم
+                    و بعد بتونیم در پایان دوره، وارد حوزه تخصصی مورد نظر خودمون بشیم.
+                    <strong>نظرتون چیه؟</strong> 👌😊
+                </p>
+            </div>
+
+            <!-- دریافت نام -->
+            <div class="name-input-group">
+                <label class="name-label" for="userNameInput">
+                    🌱 برای شروع، دوست دارم اسمت رو بدونم، میشه اسمت رو بهم بگی؟ 🤗
+                </label>
+                <div class="name-input-wrapper">
+                    <input
+                    type="text"
+                    id="userNameInput"
+                    class="name-input"
+                    placeholder="اسم و فامیلت رو اینجا بنویس..."
+                    maxlength="40"
+                    autocomplete="off"
+                    >
+                    <div class="input-underline"></div>
+                </div>
+                <div class="error-msg" id="errorMsg"></div>
+            </div>
+
+            <!-- دکمه شروع -->
+            <button class="start-btn" id="startBtn">
+                🚀 شروع دوره پایتون
+                <span class="btn-shine"></span>
+            </button>
+        </div>
+
+        <!-- فوتر -->
+        <div class="footer-box">
+            <div class="footer-text">
+                ✨ طراح: <span>بردیا فاتحی</span> ✨
+            </div>
+            <div style="margin-top: 0.3rem;">
+                📩 پشتیبانی:
+                <a class="support-link" href="https://t.me/Fatehi_Academy_Support" target="_blank">
+                    @Fatehi_Academy_Support
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toastMsg" class="toast-notify"></div>
+
+    <script>
+        (function() {
+            // ==================== عناصر DOM ====================
+            const userNameInput = document.getElementById('userNameInput');
+            const startBtn = document.getElementById('startBtn');
+            const errorMsg = document.getElementById('errorMsg');
+            const toastMsg = document.getElementById('toastMsg');
+            const particlesContainer = document.getElementById('particles');
+
+            // ==================== ذرات پس‌زمینه ====================
+            function createParticles() {
+                const colors = ['#2b9348', '#f0a500', '#4a90d9', '#e07b5a', '#7c5cbf'];
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    const size = Math.random() * 18 + 6;
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.bottom = '-20px';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (Math.random() * 8 + 6) + 's';
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            createParticles();
+
+            // ==================== Toast ====================
+            function showToast(message, isSuccess = true) {
+                toastMsg.textContent = message;
+                toastMsg.style.background = isSuccess ?
+                    'linear-gradient(115deg, #1f3b2c, #113a25)' :
+                    'linear-gradient(115deg, #5c1a1a, #8b2020)';
+                toastMsg.classList.remove('show');
+                void toastMsg.offsetWidth;
+                toastMsg.classList.add('show');
+                setTimeout(() => {
+                    toastMsg.classList.remove('show');
+                }, 2800);
+            }
+
+            // ==================== اعتبارسنجی نام ====================
+            function validateName(name) {
+                const trimmed = name.trim();
+                if (trimmed.length === 0) {
+                    return { valid: false, msg: '⚠️ لطفاً اسم خودت رو وارد کن! نمی‌خوام غریبه باشیم 😊' };
+                }
+                if (trimmed.length < 2) {
+                    return { valid: false, msg: '⚠️ اسم باید حداقل ۲ حرف باشه، یه کم بیشتر بگو 😅' };
+                }
+                if (trimmed.length > 40) {
+                    return { valid: false, msg: '⚠️ اسم خیلی بلنده! لطفاً خلاصه‌تر بنویس 🙏' };
+                }
+                if (!/^[\u0600-\u06FF\s]+$/.test(trimmed)) {
+                    return { valid: false, msg: '⚠️ لطفاً اسم خودت رو به فارسی بنویس 🌸' };
+                }
+                return { valid: true, msg: '' };
+            }
+
+            // ==================== ذخیره و انتقال ====================
+            function saveAndProceed() {
+                const name = userNameInput.value;
+                const validation = validateName(name);
+
+                if (!validation.valid) {
+                    errorMsg.textContent = validation.msg;
+                    errorMsg.classList.add('show');
+                    userNameInput.focus();
+                    setTimeout(() => errorMsg.classList.remove('show'), 2500);
+                    return;
+                }
+
+                // ذخیره در localStorage
+                const userData = {
+                    fullName: name.trim(),
+                    joinedAt: new Date().toISOString(),
+                    academy: 'آکادمی بردیا فاتحی',
+                    progress: {
+                        currentStage: 1,
+                        completedStages: [],
+                        quizResults: {}
+                    }
+                };
+                localStorage.setItem('python_academy_user', JSON.stringify(userData));
+
+                // انیمیشن خروج
+                showToast('✨ خوش اومدی ' + name.trim() + ' جان! در حال انتقال به داشبورد...', true);
+                userNameInput.disabled = true;
+                startBtn.disabled = true;
+                startBtn.style.opacity = '0.6';
+                startBtn.style.cursor = 'not-allowed';
+
+                // انتقال به داشبورد
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            }
+
+            // ==================== Event Listeners ====================
+            startBtn.addEventListener('click', saveAndProceed);
+
+            userNameInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    saveAndProceed();
+                }
+            });
+
+            // فوکوس خودکار روی اینپوت
+            setTimeout(() => {
+                userNameInput.focus();
+            }, 800);
+
+            // افکت تایپ در placeholder
+            const placeholderTexts = [
+                'اسم و فامیلت رو اینجا بنویس...',
+                'مثلاً: امیر محمدی',
+                'بیا، اسمتو بگو دیگه... 😊',
+                'منتظرتم... اسمت رو تایپ کن 🌱'
+            ];
+                        let placeholderIndex = 0;
+            setInterval(() => {
+                if (document.activeElement !== userNameInput && !userNameInput.value) {
+                    placeholderIndex = (placeholderIndex + 1) % placeholderTexts.length;
+                    userNameInput.placeholder = placeholderTexts[placeholderIndex];
+                }
+            }, 3500);
+
+            // ==================== چک کردن کاربر برگشتی ====================
+            const existingUser = localStorage.getItem('python_academy_user');
+            if (existingUser) {
+                try {
+                    const user = JSON.parse(existingUser);
+                    if (user.fullName && user.progress) {
+                        userNameInput.value = user.fullName;
+                        // نمایش پیام برگشت
+                        const welcomeCard = document.querySelector('.welcome-message');
+                        welcomeCard.innerHTML = `
+                            <p>
+                                🎉 <strong>${user.fullName}</strong> جان، خوش برگشتی!
+                                انگار قبلاً دوره رو شروع کردی. می‌خوای ادامه بدی؟
+                            </p>
+                            <p style="margin-top:0.5rem;font-size:0.9rem;color:#5a6e85;">
+                                📊 مرحله فعلی: <strong>${user.progress.currentStage}</strong> |
+                                ✅ مراحل تکمیل شده: <strong>${user.progress.completedStages.length}</strong>
+                            </p>
+                        `;
+                        startBtn.textContent = '📚 ادامه دوره پایتون';
+                    }
+                } catch (e) {
+                    // داده خراب - نادیده بگیر
+                }
+            }
+
+            console.log('🐍 آکادمی پایتون مقدماتی | بردیا فاتحی');
+            console.log('📩 پشتیبانی: @Fatehi_Academy_Support');
+        })();
+    </script>
+</body>
+</html>
