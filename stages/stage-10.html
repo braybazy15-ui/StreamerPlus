@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>مرحله ۱۰ | کامنت‌گذاری | آکادمی بردیا فاتحی</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --green: #2b9348; --green-dark: #1f6e34; --green-light: #e6f4ea;
+            --gold: #f0a500; --gold-light: #fff8e7; --dark: #1f2b3a;
+            --text: #2c3e4e; --text-light: #5a6e85; --bg: #f0f4fa; --white: #ffffff;
+            --red: #d94535; --blue: #4a90d9; --blue-light: #e8f2fd;
+            --teal: #0d7377; --teal-light: #e0f4f5;
+            --radius: 2rem; --radius-sm: 1.5rem; --radius-xs: 1rem;
+            --shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, #e8f0fe 0%, #f0f4fa 30%, #e2e8f0 70%, #dce5f5 100%);
+            min-height: 100vh; padding: 1.5rem 1rem;
+            display: flex; justify-content: center; align-items: flex-start;
+            position: relative; overflow-x: hidden;
+        }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .particle { position: absolute; border-radius: 50%; opacity: 0.1; animation: floatUp 8s infinite ease-in; }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.12; } 90% { opacity: 0.06; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+        .container { max-width: 950px; width: 100%; margin: 0 auto; position: relative; z-index: 1; }
+        .stage-card {
+            background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow);
+            padding: 2rem 2rem 2.5rem; border: 1px solid rgba(255, 255, 255, 0.7);
+            animation: cardEntry 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+            position: relative; overflow: hidden;
+        }
+        .stage-card::before {
+            content: ''; position: absolute; top: -60px; left: -60px;
+            width: 180px; height: 180px; background: var(--teal-light);
+            border-radius: 50%; opacity: 0.5; z-index: 0; animation: blob1 6s infinite alternate;
+        }
+        .stage-card::after {
+            content: ''; position: absolute; bottom: -40px; right: -40px;
+            width: 140px; height: 140px; background: var(--gold-light);
+            border-radius: 50%; opacity: 0.5; z-index: 0; animation: blob2 5s infinite alternate;
+        }
+        @keyframes blob1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(20px, -15px) scale(1.15); } }
+        @keyframes blob2 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-20px, 15px) scale(1.1); } }
+        .stage-card>* { position: relative; z-index: 1; }
+        @keyframes cardEntry { 0% { opacity: 0; transform: translateY(30px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+        .stage-header { text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px dashed #dce5f0; }
+        .stage-badge-top { display: inline-block; background: var(--teal); color: white; padding: 0.3rem 1.2rem; border-radius: 2rem; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.6rem; }
+        .stage-header h1 { font-size: 1.7rem; font-weight: 900; color: var(--dark); margin-bottom: 0.3rem; }
+        .stage-header .subtitle { color: var(--text-light); font-size: 0.9rem; }
+        .user-greeting { background: var(--green-light); border-radius: 3rem; padding: 0.6rem 1.6rem; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700; color: var(--green-dark); margin-bottom: 1.8rem; font-size: 1rem; animation: float 3s infinite alternate; }
+        @keyframes float { 0% { transform: translateY(0px); } 100% { transform: translateY(-6px); } }
+        .lesson-section { background: #fafcfd; border-radius: var(--radius-sm); padding: 1.5rem; margin-bottom: 1.8rem; border: 1px solid #eef2f8; border-right: 5px solid var(--teal); line-height: 2.1; color: var(--text); text-align: justify; animation: fadeIn 0.6s 0.2s both; }
+        @keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
+        .lesson-section h2 { font-size: 1.3rem; color: #0a5c5f; margin-bottom: 1rem; font-weight: 800; }
+        .lesson-section h3 { font-size: 1.1rem; color: var(--dark); margin: 1.4rem 0 0.7rem; font-weight: 700; }
+        .lesson-section p { margin-bottom: 0.9rem; }
+        .lesson-section ul, .lesson-section ol { padding-right: 1.8rem; margin-bottom: 1rem; }
+        .lesson-section li { margin-bottom: 0.6rem; }
+        .highlight-box { background: #fffdf5; border: 1px solid #f0e5a0; border-radius: var(--radius-xs); padding: 1.2rem 1.4rem; margin: 1.2rem 0; border-right: 4px solid var(--gold); }
+        .highlight-box.green { background: #f0faf3; border-color: #b8dcc5; border-right: 4px solid var(--green); }
+        .highlight-box.teal { background: var(--teal-light); border-color: #a0dde0; border-right: 4px solid var(--teal); }
+        .highlight-box.red { background: #fff5f5; border-color: #f0c0c0; border-right: 4px solid var(--red); }
+        .code-inline { background: #eef3f8; padding: 0.15rem 0.5rem; border-radius: 0.4rem; font-family: 'Consolas', 'Courier New', monospace; direction: ltr; display: inline-block; font-size: 0.9rem; color: #1a3a5c; }
+        .code-block { background: #1e2b3a; color: #a8d8a8; padding: 1rem 1.2rem; border-radius: 1rem; font-family: 'Consolas', 'Courier New', monospace; direction: ltr; font-size: 0.9rem; overflow-x: auto; margin: 1rem 0; line-height: 1.8; white-space: pre-wrap; word-break: break-all; }
+        .code-block .keyword { color: #569cd6; } .code-block .string { color: #ce9178; } .code-block .number { color: #b5cea8; } .code-block .comment { color: #6a9955; } .code-block .var-name { color: #9cdcfe; }
+        .exercise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+        .flip-card { perspective: 1000px; height: 220px; cursor: pointer; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: var(--radius-xs); display: flex; align-items: center; justify-content: center; padding: 1rem; text-align: center; border: 2px solid #e0e7ef; }
+        .flip-card-front { background: linear-gradient(135deg, #ffffff, #f9fbfe); flex-direction: column; gap: 0.5rem; }
+        .flip-card-front .ex-num { background: var(--teal); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; }
+        .flip-card-front .ex-text { font-weight: 600; color: var(--dark); font-size: 0.9rem; }
+        .flip-card-front .ex-hint { font-size: 0.7rem; color: var(--text-light); }
+        .flip-card-back { background: linear-gradient(135deg, #e0f4f5, #c0e8ea); transform: rotateY(180deg); flex-direction: column; gap: 0.4rem; border-color: var(--teal); }
+        .flip-card-back .answer-label { font-weight: 700; color: #0a5c5f; font-size: 0.8rem; }
+        .flip-card-back .answer-code { background: #1e2b3a; color: #a8d8a8; padding: 0.6rem 0.9rem; border-radius: 0.5rem; font-family: 'Consolas', 'Courier New', monospace; direction: ltr; font-size: 0.8rem; max-width: 100%; overflow-x: auto; white-space: pre-wrap; text-align: right; }
+        .quiz-section { background: white; border-radius: var(--radius-sm); padding: 1.5rem; margin-top: 1.5rem; border: 2px solid #e0e7ef; }
+        .quiz-section h3 { font-size: 1.2rem; color: var(--dark); margin-bottom: 1rem; font-weight: 800; text-align: center; }
+        .quiz-item { background: #f9fbfe; border: 1px solid #eef2f8; border-radius: var(--radius-xs); padding: 1.2rem; margin-bottom: 1rem; }
+        .quiz-question { font-weight: 700; color: var(--dark); margin-bottom: 0.8rem; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; }
+        .quiz-option { display: flex; align-items: center; gap: 10px; cursor: pointer; background: white; padding: 0.6rem 1rem; border-radius: 1rem; transition: var(--transition); border: 1px solid #eef2f8; }
+        .quiz-option:hover { background: #f0f6fa; border-color: #cddfe7; }
+        .quiz-option input[type="radio"] { width: 18px; height: 18px; accent-color: var(--teal); cursor: pointer; }
+        .quiz-option.correct-answer { background: #d4edda; border-color: #2b9348; }
+        .quiz-option.wrong-answer { background: #fce4e4; border-color: #d94535; }
+        .quiz-feedback { margin-top: 0.5rem; font-weight: 600; font-size: 0.85rem; min-height: 1.5rem; }
+        .feedback-correct { color: #1f6e34; } .feedback-wrong { color: #c0392b; }
+        .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-top: 1.5rem; }
+        .btn { padding: 0.8rem 2rem; font-family: 'Vazirmatn', sans-serif; font-size: 0.95rem; font-weight: 700; border-radius: 3rem; cursor: pointer; transition: var(--transition); border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; }
+        .btn-primary { background: linear-gradient(95deg, #2b9348, #238b3f); color: white; box-shadow: 0 6px 16px rgba(35, 139, 63, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(35, 139, 63, 0.4); }
+        .btn-outline { background: white; color: var(--green-dark); border: 2px solid var(--green); }
+        .btn-outline:hover { background: var(--green-light); }
+        .toast-notify { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) scale(0.9); background: linear-gradient(115deg, #1f3b2c, #113a25); color: #f3fff9; padding: 0.9rem 2rem; border-radius: 60px; font-weight: 600; font-size: 1rem; box-shadow: 0 20px 30px -12px black; z-index: 1000; opacity: 0; transition: 0.25s; pointer-events: none; white-space: nowrap; }
+        .toast-notify.show { opacity: 1; transform: translateX(-50%) scale(1); }
+        .footer-box { margin-top: 1.5rem; text-align: center; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(6px); border-radius: 2rem; padding: 0.9rem 1.2rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); border: 1px solid rgba(255, 255, 255, 0.8); }
+        .footer-text { font-size: 0.9rem; color: #2c3e50; font-weight: 500; }
+        .footer-text span { color: #1f6e3f; font-weight: 800; background: #eafaf1; padding: 0.2rem 0.8rem; border-radius: 30px; display: inline-block; }
+        .support-link { color: #2b9348; font-weight: 600; text-decoration: none; direction: ltr; display: inline-block; margin-top: 0.3rem; font-size: 0.85rem; }
+        @media (max-width: 600px) {
+            .stage-card { padding: 1.5rem 1rem; } .stage-header h1 { font-size: 1.4rem; }
+            .lesson-section { padding: 1rem; font-size: 0.9rem; } .btn { padding: 0.7rem 1.5rem; font-size: 0.85rem; }
+            .exercise-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <div class="stage-card">
+            <div class="stage-header">
+                <span class="stage-badge-top">📚 مرحله ۱۰ از ۳۱</span>
+                <h1>💬 کامنت‌گذاری در پایتون</h1>
+                <p class="subtitle">یادداشت‌گذاری روی کدها برای خودت و دیگران</p>
+            </div>
+
+            <div style="text-align:center;">
+                <div class="user-greeting" id="userGreeting">
+                    👋 سلام، <strong id="userNameDisplay">دانشجو</strong> جان! امروز یاد می‌گیریم چطور کدهایمان را خواناتر کنیم 💬
+                </div>
+            </div>
+
+            <div class="lesson-section">
+                <h2>💬 کامنت (Comment) چیست؟</h2>
+                <p>
+                    <strong>کامنت</strong> یعنی <strong>یادداشت یا توضیح</strong> که داخل کد می‌نویسی،
+                    اما پایتون آن را <strong>اجرا نمی‌کند</strong> و کاملاً <strong>نادیده می‌گیرد!</strong>
+                    کامنت‌ها فقط برای <strong>انسان‌ها</strong> نوشته می‌شوند، نه برای کامپیوتر.
+                </p>
+                <p>
+                    تصور کن یه دفترچه یادداشت کنار دستته و هر جا لازم بود، یه توضیح کوچک می‌نویسی
+                    تا بعداً خودت یا دیگران بفهمند که این قسمت از کد چه کاری انجام می‌دهد.
+                    کامنت دقیقاً همین کار را می‌کند!
+                </p>
+
+                <div class="highlight-box green">
+                    <strong>🎯 تعریف ساده:</strong> کامنت = متن‌هایی در کد که فقط برای خواندن انسان است
+                    و پایتون آنها را کاملاً نادیده می‌گیرد. کامنت‌ها روی اجرای برنامه
+                    <strong>هیچ تأثیری</strong> ندارند!
+                </div>
+
+                <h2>✍️ انواع کامنت در پایتون</h2>
+
+                <h3>۱. کامنت تک‌خطی (Single-line Comment)</h3>
+                <p>
+                    با علامت <span class="code-inline">#</span> (هشتگ/شارپ) شروع می‌شود.
+                    هر چیزی که بعد از # در آن خط بنویسی، کامنت محسوب می‌شود و اجرا نمی‌شود.
+                </p>
+                <div class="code-block">
+<span class="comment"># این یک کامنت است - پایتون این خط را نادیده می‌گیرد</span>
+<span class="keyword">print</span>(<span class="string">"Hello World!"</span>)  <span class="comment"># این هم کامنت است</span>
+
+<span class="comment"># کامنت می‌تواند توضیح دهد که کد چه کاری انجام می‌دهد</span>
+<span class="var-name">name</span> = <span class="string">"Ali"</span>  <span class="comment"># ذخیره اسم کاربر</span>
+<span class="var-name">age</span> = <span class="number">25</span>  <span class="comment"># ذخیره سن کاربر</span>
+                </div>
+
+                <h3>۲. کامنت چندخطی (Multi-line Comment)</h3>
+                <p>
+                    با سه علامت کوتیشن (<span class="code-inline">""" """</span> یا <span class="code-inline">''' '''</span>)
+                    ساخته می‌شود. هر چیزی بین این سه‌تایی‌ها بنویسی، کامنت محسوب می‌شود.
+                    این روش برای توضیحات طولانی عالی است!
+                </p>
+                <div class="code-block">
+<span class="string">"""
+این یک کامنت چند خطی است.
+می‌توانی اینجا چندین خط توضیح بنویسی.
+پایتون همه این خطوط را نادیده می‌گیرد.
+خیلی عالی برای توضیح تابع‌ها و کلاس‌ها!
+"""</span>
+
+<span class="keyword">print</span>(<span class="string">"این کد اجرا می‌شود"</span>)
+
+<span class="string">'''
+این هم یک کامنت چند خطی دیگر
+با سینگل کوتیشن سه‌تایی.
+کاملاً معادل روش قبلی است.
+'''</span>
+                </div>
+
+                <h2>🎯 چرا کامنت‌گذاری مهم است؟</h2>
+                <p>
+                    شاید الان فکر کنی: «خب که چی؟ من خودم کد رو نوشتم، می‌دونم چیکار می‌کنه!»
+                    اما باور کن چند هفته بعد که به کدت نگاه کنی، ممکنه هیچی یادت نیاد! 😅
+                </p>
+
+                <div class="highlight-box teal">
+                    <strong>📌 دلایل مهم کامنت‌گذاری:</strong>
+                    <ul style="margin-top:0.5rem;">
+                        <li>🧠 <strong>یادآوری به خودت:</strong> وقتی بعداً به کد برمی‌گردی، می‌فهمی چه کاری انجام می‌دهد</li>
+                        <li>👥 <strong>کمک به دیگران:</strong> اگر کدت را با کسی به اشتراک بگذاری، او هم می‌فهمد</li>
+                        <li>🐞 <strong>دیباگ کردن:</strong> می‌توانی موقتاً یک خط کد را کامنت کنی تا ببینی بدون آن برنامه چطور کار می‌کند</li>
+                        <li>📚 <strong>مستندسازی:</strong> کامنت‌ها مثل دفترچه راهنمای کد تو عمل می‌کنند</li>
+                    </ul>
+                </div>
+
+                <h2>🔧 استفاده از کامنت برای دیباگ (Debugging)</h2>
+                <p>
+                    یکی از کاربردهای جالب کامنت، <strong>غیرفعال کردن موقت</strong> بخشی از کد
+                    برای پیدا کردن خطاهاست. به این کار می‌گویند <strong>Comment Out</strong>.
+                </p>
+                <div class="code-block">
+<span class="keyword">print</span>(<span class="string">"خط ۱: این اجرا می‌شود"</span>)
+<span class="comment"># print("خط ۲: این را موقتاً غیرفعال کردم")</span>
+<span class="keyword">print</span>(<span class="string">"خط ۳: این هم اجرا می‌شود"</span>)
+                </div>
+                <p>
+                    اینطوری می‌تونی ببینی اگر خط ۲ نباشد، برنامه چطور کار می‌کند،
+                    بدون اینکه واقعاً آن خط را پاک کنی!
+                </p>
+
+                <h2>📝 اصول و قوانین کامنت‌گذاری حرفه‌ای</h2>
+                <p>
+                    کامنت‌گذاری هم آدابی دارد! یک برنامه‌نویس حرفه‌ای کامنت‌های
+                    <strong>مفید و مختصر</strong> می‌نویسد، نه کامنت‌های بدیهی و بی‌فایده!
+                </p>
+
+                <div class="highlight-box red">
+                    <strong>❌ کامنت بد (بدیهی و بی‌فایده):</strong>
+                    <br><span class="code-inline">x = 5  # عدد 5 را در x قرار بده</span>
+                    <br>این کامنت هیچ اطلاعات جدیدی نمی‌دهد! از کد پیداست که 5 در x قرار می‌گیرد.
+                </div>
+
+                <div class="highlight-box green">
+                    <strong>✅ کامنت خوب (توضیح هدف و دلیل):</strong>
+                    <br><span class="code-inline">x = 5  # حداقل نمره قبولی در درس ریاضی</span>
+                    <br>این کامنت می‌گوید <strong>چرا</strong> عدد 5 انتخاب شده، نه اینکه <strong>چه کاری</strong> انجام می‌شود.
+                </div>
+
+                <h3>📋 قوانین طلایی کامنت‌گذاری:</h3>
+                <ul>
+                    <li>✅ <strong>هدف را توضیح بده، نه عمل را:</strong> بگو «چرا» این کد نوشته شده، نه «چه کاری» می‌کند</li>
+                    <li>✅ <strong>مختصر و مفید باش:</strong> کامنت نباید رمان باشد! یک یا دو خط کافی است</li>
+                    <li>✅ <strong>کد پیچیده را توضیح بده:</strong> اگر الگوریتم یا منطق پیچیده‌ای داری، حتماً توضیح بده</li>
+                    <li>✅ <strong>به‌روز نگه دار:</strong> اگر کد را تغییر دادی، کامنتش را هم تغییر بده</li>
+                    <li>❌ <strong>کامنت بی‌فایده ننویس:</strong> کامنتی که فقط کد را تکرار کند، ارزش ندارد</li>
+                    <li>❌ <strong>کامنت را جایگزین کد خوب نکن:</strong> کد تمیز و خوانا بهتر از کامنت طولانی است</li>
+                </ul>
+
+                <h2>🌍 کامنت‌گذاری به فارسی یا انگلیسی؟</h2>
+                <p>
+                    پایتون از <strong>کاراکترهای فارسی (یونیکد)</strong> در کامنت‌ها پشتیبانی می‌کند.
+                    پس می‌توانی کامنت‌هایت را به <strong>فارسی</strong> بنویسی!
+                    اما اگر در پروژه‌های بین‌المللی کار می‌کنی، انگلیسی بهتر است.
+                </p>
+                <div class="code-block">
+<span class="comment"># این کامنت فارسی است و پایتون آن را قبول دارد!</span>
+<span class="comment"># This is an English comment</span>
+<span class="keyword">print</span>(<span class="string">"Both are fine!"</span>)
+                </div>
+
+                <h2>⌨️ کلیدهای میانبر برای کامنت‌گذاری در VS Code</h2>
+                <p>
+                    در VS Code می‌توانی با یک کلید میانبر، یک یا چند خط را سریعاً کامنت کنی:
+                </p>
+                <ul>
+                    <li>🪟 <strong>ویندوز:</strong> <span class="code-inline">Ctrl + /</span></li>
+                    <li>🍎 <strong>مک:</strong> <span class="code-inline">Cmd + /</span></li>
+                </ul>
+                <p>
+                    خط(های) انتخاب شده را هایلایت کن، این کلیدها را بزن،
+                                  و به‌طور خودکار # به ابتدای خط اضافه می‌شود. دوباره بزنی، # حذف می‌شود!
+                </p>
+
+                <h2>🧪 تمرین‌های عملی کامنت‌گذاری</h2>
+                <p>روی هر کارت کلیک کن تا پاسخ را ببینی! <strong>اول خودت حل کن، بعد جواب را چک کن!</strong></p>
+
+                <div class="exercise-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۱</div>
+                                <div class="ex-text">یک کامنت تک‌خطی به کد زیر اضافه کن که توضیح دهد چه کاری می‌کند</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب را ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code"># دریافت نام کاربر و خوش‌آمدگویی
+name = input("اسمت چیه؟ ")
+print("سلام", name)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۲</div>
+                                <div class="ex-text">خط دوم را موقتاً کامنت کن تا اجرا نشود</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب را ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code">print("خط یک")
+# print("خط دو")
+print("خط سه")</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۳</div>
+                                <div class="ex-text">یک کامنت چندخطی برای توضیح برنامه بنویس</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب را ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code">"""
+برنامه محاسبه مساحت مستطیل
+نویسنده: علی
+تاریخ: ۱۴۰۲
+"""
+length = 10
+width = 5
+area = length * width
+print("مساحت:", area)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۴</div>
+                                <div class="ex-text">کدام کامنت بهتر است؟ چرا؟</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب را ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code"># ❌ بد: x = x + 1  # یکی به x اضافه کن
+# ✅ خوب: x = x + 1  # شمارنده دانش‌آموزان
+# دلیل: دومی هدف را توضیح می‌دهد</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۵</div>
+                                <div class="ex-text">با کلید میانبر، چطور یک خط را سریع کامنت می‌کنی؟</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب را ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code">ویندوز: Ctrl + /
+مک: Cmd + /
+خط را انتخاب کن، کلیدها را بزن!</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۶</div>
+                                <div class="ex-text">یک برنامه ساده با input و print بنویس و با کامنت توضیح بده</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب را ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code"># برنامه خوش‌آمدگویی به کاربر
+name = input("اسمت چیه؟ ")
+# نمایش پیام خوش‌آمد
+print(f"خوش آمدی {name} جان!")</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-section" id="quizSection">
+                <h3>📝 آزمون مرحله ۱۰ - کامنت‌گذاری</h3>
+                <p style="text-align:center;color:var(--text-light);margin-bottom:1rem;font-size:0.85rem;">
+                    ببینیم کامنت‌ها را چقدر خوب یاد گرفتی؟ (اختیاری)
+                </p>
+
+                <div class="quiz-item" data-question="1" data-correct="2">
+                    <div class="quiz-question">۱. کامنت در پایتون با چه علامتی شروع می‌شود؟</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q1" value="1"> //</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="2"> #</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="3"> --</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="4"> **</label>
+                    </div>
+                    <div class="quiz-feedback" id="feedback1"></div>
+                </div>
+
+                <div class="quiz-item" data-question="2" data-correct="3">
+                    <div class="quiz-question">۲. کدام یک درست است؟</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q2" value="1"> کامنت‌ها اجرا می‌شوند ولی نمایش داده نمی‌شوند</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="2"> کامنت‌ها فقط در انتهای خط می‌توانند باشند</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="3"> کامنت‌ها توسط پایتون نادیده گرفته می‌شوند</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="4"> کامنت‌ها باعث خطا می‌شوند</label>
+                    </div>
+                    <div class="quiz-feedback" id="feedback2"></div>
+                </div>
+
+                <div class="quiz-item" data-question="3" data-correct="1">
+                    <div class="quiz-question">۳. کامنت چندخطی با چه علامتی ساخته می‌شود؟</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q3" value="1"> """ یا '''</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="2"> ###</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="3"> ***</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="4"> ///</label>
+                    </div>
+                    <div class="quiz-feedback" id="feedback3"></div>
+                </div>
+
+                <div class="quiz-item" data-question="4" data-correct="4">
+                    <div class="quiz-question">۴. کدام یک کامنت <strong>خوب</strong> محسوب می‌شود؟</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q4" value="1"> x = 5  # قرار دادن 5 در x</label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="2"> print("Hi")  # چاپ سلام</label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="3"> y = 10  # عدد ده</label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="4"> max_score = 100  # حداکثر نمره قبولی در آزمون</label>
+                    </div>
+                    <div class="quiz-feedback" id="feedback4"></div>
+                </div>
+
+                <div class="quiz-item" data-question="5" data-correct="3">
+                    <div class="quiz-question">۵. کلید میانبر کامنت‌گذاری در VS Code (ویندوز) چیست؟</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q5" value="1"> Ctrl + C</label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="2"> Ctrl + V</label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="3"> Ctrl + /</label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="4"> Ctrl + Z</label>
+                    </div>
+                    <div class="quiz-feedback" id="feedback5"></div>
+                </div>
+
+                <div style="text-align:center;margin-top:1.5rem;">
+                    <button class="btn btn-primary" id="checkQuizBtn">✅ بررسی پاسخ‌ها</button>
+                </div>
+                <div id="quizResultMsg" style="text-align:center;margin-top:0.8rem;font-weight:700;min-height:1.5rem;"></div>
+            </div>
+
+            <div class="btn-row">
+                <a href="../dashboard.html" class="btn btn-outline">🏠 بازگشت به داشبورد</a>
+                <a href="stage-09.html" class="btn btn-outline">⬅️ مرحله قبلی</a>
+                <a href="stage-11.html" class="btn btn-primary">🚀 مرحله بعد: انواع داده</a>
+            </div>
+        </div>
+
+        <div class="footer-box">
+            <div class="footer-text">✨ طراح: <span>بردیا فاتحی</span> ✨</div>
+            <div>📩 پشتیبانی: <a class="support-link" href="https://t.me/Fatehi_Academy_Support" target="_blank">@Fatehi_Academy_Support</a></div>
+        </div>
+    </div>
+
+    <div id="toastMsg" class="toast-notify"></div>
+
+    <script>
+        (function() {
+            const userNameDisplay = document.getElementById('userNameDisplay');
+            const checkQuizBtn = document.getElementById('checkQuizBtn');
+            const quizResultMsg = document.getElementById('quizResultMsg');
+            const toastMsg = document.getElementById('toastMsg');
+            const particlesContainer = document.getElementById('particles');
+
+            function createParticles() {
+                const colors = ['#0d7377', '#f0a500', '#4a90d9', '#2b9348', '#e07b5a'];
+                for (let i = 0; i < 18; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    const size = Math.random() * 14 + 5;
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.bottom = '-20px';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (Math.random() * 7 + 5) + 's';
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            createParticles();
+
+            function showToast(message, isSuccess = true) {
+                toastMsg.textContent = message;
+                toastMsg.style.background = isSuccess ? 'linear-gradient(115deg, #1f3b2c, #113a25)' : 'linear-gradient(115deg, #5c1a1a, #8b2020)';
+                toastMsg.classList.remove('show');
+                void toastMsg.offsetWidth;
+                toastMsg.classList.add('show');
+                setTimeout(() => { toastMsg.classList.remove('show'); }, 3000);
+            }
+
+            const userData = JSON.parse(localStorage.getItem('python_academy_user') || 'null');
+            if (userData && userData.fullName) {
+                userNameDisplay.textContent = userData.fullName;
+            }
+
+            checkQuizBtn.addEventListener('click', () => {
+                const quizItems = document.querySelectorAll('.quiz-item');
+                let allCorrect = true;
+                let allAnswered = true;
+                let correctCount = 0;
+                const totalQuestions = quizItems.length;
+
+                document.querySelectorAll('.quiz-feedback').forEach(fb => { fb.textContent = ''; fb.className = 'quiz-feedback'; });
+                document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('correct-answer', 'wrong-answer'));
+
+                quizItems.forEach(item => {
+                    const questionNum = item.getAttribute('data-question');
+                    const correctAnswer = item.getAttribute('data-correct');
+                    const selectedRadio = item.querySelector(`input[name="q${questionNum}"]:checked`);
+                    const feedbackEl = document.getElementById('feedback' + questionNum);
+
+                    if (!selectedRadio) {
+                        allAnswered = false;
+                        allCorrect = false;
+                        feedbackEl.textContent = '⚠️ لطفاً یک گزینه را انتخاب کن!';
+                        feedbackEl.className = 'quiz-feedback feedback-wrong';
+                        return;
+                    }
+
+                    const selectedValue = selectedRadio.value;
+                    const selectedOption = selectedRadio.closest('.quiz-option');
+
+                    if (selectedValue === correctAnswer) {
+                        correctCount++;
+                        selectedOption.classList.add('correct-answer');
+                        feedbackEl.textContent = '✅ صحیح! آفرین!';
+                        feedbackEl.className = 'quiz-feedback feedback-correct';
+                    } else {
+                        allCorrect = false;
+                        selectedOption.classList.add('wrong-answer');
+                        const correctOption = item.querySelector(`input[value="${correctAnswer}"]`).closest('.quiz-option');
+                        correctOption.classList.add('correct-answer');
+                        feedbackEl.textContent = '❌ نادرست! گزینه صحیح با رنگ سبز مشخص شده است.';
+                        feedbackEl.className = 'quiz-feedback feedback-wrong';
+                    }
+                });
+
+                if (!allAnswered) {
+                    quizResultMsg.innerHTML = '<span style="color:#d94535;">⚠️ لطفاً به همه سوالات پاسخ بده!</span>';
+                    showToast('⚠️ همه سوالات باید پاسخ داده شوند!', false);
+                    return;
+                }
+
+                if (allCorrect) {
+                    quizResultMsg.innerHTML = '<span style="color:#1f6e34;">🎉 تبریک! همه پاسخ‌ها درست بود. کامنت‌ها را کامل یاد گرفتی!</span>';
+                    showToast('🎉 عالی! آماده‌ای برای مرحله بعد!', true);
+                } else {
+                    const wrongCount = totalQuestions - correctCount;
+                    quizResultMsg.innerHTML = `<span style="color:#d94535;">😔 ${wrongCount} سوال اشتباه بود. گزینه‌های سبز را ببین و دوباره تلاش کن!</span>`;
+                    showToast('❌ دوباره تلاش کن!', false);
+                }
+            });
+
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio) radio.checked = true;
+                });
+            });
+
+            console.log('🐍 مرحله ۱۰: کامنت‌گذاری | آکادمی بردیا فاتحی');
+        })();
+    </script>
+</body>
+  </html>
