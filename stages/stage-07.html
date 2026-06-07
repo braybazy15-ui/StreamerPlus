@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>مرحله ۷ | متغیرها | آکادمی بردیا فاتحی</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --green: #2b9348;
+            --green-dark: #1f6e34;
+            --green-light: #e6f4ea;
+            --gold: #f0a500;
+            --gold-light: #fff8e7;
+            --dark: #1f2b3a;
+            --text: #2c3e4e;
+            --text-light: #5a6e85;
+            --bg: #f0f4fa;
+            --white: #ffffff;
+            --red: #d94535;
+            --blue: #4a90d9;
+            --blue-light: #e8f2fd;
+            --orange: #e07b5a;
+            --orange-light: #fef4f0;
+            --radius: 2rem;
+            --radius-sm: 1.5rem;
+            --radius-xs: 1rem;
+            --shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, #e8f0fe 0%, #f0f4fa 30%, #e2e8f0 70%, #dce5f5 100%);
+            min-height: 100vh; padding: 1.5rem 1rem;
+            display: flex; justify-content: center; align-items: flex-start;
+            position: relative; overflow-x: hidden;
+        }
+
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .particle {
+            position: absolute; border-radius: 50%; opacity: 0.1;
+            animation: floatUp 8s infinite ease-in;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.12; } 90% { opacity: 0.06; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        .container { max-width: 950px; width: 100%; margin: 0 auto; position: relative; z-index: 1; }
+
+        .stage-card {
+            background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow);
+            padding: 2rem 2rem 2.5rem; border: 1px solid rgba(255, 255, 255, 0.7);
+            animation: cardEntry 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+            position: relative; overflow: hidden;
+        }
+        .stage-card::before {
+            content: ''; position: absolute; top: -60px; left: -60px;
+            width: 180px; height: 180px; background: var(--orange-light);
+            border-radius: 50%; opacity: 0.5; z-index: 0;
+            animation: blob1 6s infinite alternate;
+        }
+        .stage-card::after {
+            content: ''; position: absolute; bottom: -40px; right: -40px;
+            width: 140px; height: 140px; background: var(--gold-light);
+            border-radius: 50%; opacity: 0.5; z-index: 0;
+            animation: blob2 5s infinite alternate;
+        }
+        @keyframes blob1 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(20px, -15px) scale(1.15); } }
+        @keyframes blob2 { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(-20px, 15px) scale(1.1); } }
+        .stage-card>* { position: relative; z-index: 1; }
+
+        @keyframes cardEntry { 0% { opacity: 0; transform: translateY(30px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+
+        .stage-header {
+            text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem;
+            border-bottom: 2px dashed #dce5f0;
+        }
+        .stage-badge-top {
+            display: inline-block; background: var(--orange); color: white;
+            padding: 0.3rem 1.2rem; border-radius: 2rem; font-weight: 700;
+            font-size: 0.85rem; margin-bottom: 0.6rem;
+        }
+        .stage-header h1 { font-size: 1.7rem; font-weight: 900; color: var(--dark); margin-bottom: 0.3rem; }
+        .stage-header .subtitle { color: var(--text-light); font-size: 0.9rem; }
+
+        .user-greeting {
+            background: var(--green-light); border-radius: 3rem; padding: 0.6rem 1.6rem;
+            display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700;
+            color: var(--green-dark); margin-bottom: 1.8rem; font-size: 1rem;
+            animation: float 3s infinite alternate;
+        }
+        @keyframes float { 0% { transform: translateY(0px); } 100% { transform: translateY(-6px); } }
+
+        .lesson-section {
+            background: #fafcfd; border-radius: var(--radius-sm); padding: 1.5rem;
+            margin-bottom: 1.8rem; border: 1px solid #eef2f8; border-right: 5px solid var(--orange);
+            line-height: 2.1; color: var(--text); text-align: justify;
+            animation: fadeIn 0.6s 0.2s both;
+        }
+        @keyframes fadeIn { 0% { opacity: 0; transform: translateY(15px); } 100% { opacity: 1; transform: translateY(0); } }
+        .lesson-section h2 { font-size: 1.3rem; color: #b04520; margin-bottom: 1rem; font-weight: 800; }
+        .lesson-section h3 { font-size: 1.1rem; color: var(--dark); margin: 1.4rem 0 0.7rem; font-weight: 700; }
+        .lesson-section p { margin-bottom: 0.9rem; }
+        .lesson-section ul, .lesson-section ol { padding-right: 1.8rem; margin-bottom: 1rem; }
+        .lesson-section li { margin-bottom: 0.6rem; }
+
+        .highlight-box {
+            background: #fffdf5; border: 1px solid #f0e5a0; border-radius: var(--radius-xs);
+            padding: 1.2rem 1.4rem; margin: 1.2rem 0; border-right: 4px solid var(--gold);
+        }
+        .highlight-box.green { background: #f0faf3; border-color: #b8dcc5; border-right: 4px solid var(--green); }
+        .highlight-box.red { background: #fff5f5; border-color: #f0c0c0; border-right: 4px solid var(--red); }
+        .highlight-box.blue { background: var(--blue-light); border-color: #b8d0f0; border-right: 4px solid var(--blue); }
+        .highlight-box.orange { background: var(--orange-light); border-color: #f0c8b8; border-right: 4px solid var(--orange); }
+        .code-inline {
+            background: #eef3f8; padding: 0.15rem 0.5rem; border-radius: 0.4rem;
+            font-family: 'Consolas', 'Courier New', monospace; direction: ltr;
+            display: inline-block; font-size: 0.9rem; color: #1a3a5c;
+        }
+        .code-block {
+            background: #1e2b3a; color: #a8d8a8; padding: 1rem 1.2rem; border-radius: 1rem;
+            font-family: 'Consolas', 'Courier New', monospace; direction: ltr;
+            font-size: 0.9rem; overflow-x: auto; margin: 1rem 0; line-height: 1.8;
+            white-space: pre-wrap; word-break: break-all;
+        }
+        .code-block .keyword { color: #569cd6; }
+        .code-block .string { color: #ce9178; }
+        .code-block .number { color: #b5cea8; }
+        .code-block .comment { color: #6a9955; }
+        .code-block .var-name { color: #9cdcfe; }
+
+        .error-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; border-radius: var(--radius-xs); overflow: hidden; }
+        .error-table th { background: var(--red); color: white; padding: 0.7rem; font-weight: 700; }
+        .error-table td { padding: 0.7rem; border: 1px solid #e0e7ef; text-align: center; }
+        .error-table tr:nth-child(even) { background: #f9fbfe; }
+        .error-table tr:hover { background: #fff0ef; }
+        .error-table .err-name { direction: ltr; font-family: 'Consolas', monospace; color: #c0392b; }
+
+        .analogy-box {
+            display: flex; align-items: center; gap: 1.5rem; background: white;
+            border: 2px dashed #e0e7ef; border-radius: var(--radius-sm); padding: 1.5rem;
+            margin: 1.2rem 0; flex-wrap: wrap;
+        }
+        .analogy-icon { font-size: 4rem; min-width: 80px; text-align: center; }
+        .analogy-text { flex: 1; min-width: 200px; }
+        .analogy-text h4 { font-weight: 800; color: var(--dark); margin-bottom: 0.5rem; }
+        .analogy-text p { font-size: 0.9rem; color: var(--text); }
+
+        .exercise-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1rem; margin: 1.2rem 0;
+        }
+        .flip-card { perspective: 1000px; height: 210px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%; transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+            border-radius: var(--radius-xs); display: flex; align-items: center;
+            justify-content: center; padding: 1rem; text-align: center;
+            border: 2px solid #e0e7ef;
+        }
+        .flip-card-front {
+            background: linear-gradient(135deg, #ffffff, #f9fbfe);
+            flex-direction: column; gap: 0.5rem;
+        }
+        .flip-card-front .ex-num {
+            background: var(--orange); color: white; width: 40px; height: 40px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 1rem;
+        }
+        .flip-card-front .ex-text { font-weight: 600; color: var(--dark); font-size: 0.9rem; }
+        .flip-card-front .ex-hint { font-size: 0.7rem; color: var(--text-light); }
+        .flip-card-back {
+            background: linear-gradient(135deg, #fef4f0, #fde0d5);
+            transform: rotateY(180deg); flex-direction: column; gap: 0.4rem;
+            border-color: var(--orange);
+        }
+        .flip-card-back .answer-label { font-weight: 700; color: #b04520; font-size: 0.8rem; }
+        .flip-card-back .answer-code {
+            background: #1e2b3a; color: #a8d8a8; padding: 0.6rem 0.9rem;
+            border-radius: 0.5rem; font-family: 'Consolas', 'Courier New', monospace;
+            direction: ltr; font-size: 0.8rem; max-width: 100%; overflow-x: auto;
+            white-space: pre-wrap; text-align: right;
+        }
+
+        .quiz-section {
+            background: white; border-radius: var(--radius-sm); padding: 1.5rem;
+            margin-top: 1.5rem; border: 2px solid #e0e7ef;
+        }
+        .quiz-section h3 { font-size: 1.2rem; color: var(--dark); margin-bottom: 1rem; font-weight: 800; text-align: center; }
+        .quiz-item {
+            background: #f9fbfe; border: 1px solid #eef2f8; border-radius: var(--radius-xs);
+            padding: 1.2rem; margin-bottom: 1rem;
+        }
+        .quiz-question { font-weight: 700; color: var(--dark); margin-bottom: 0.8rem; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.5rem; }
+        .quiz-option {
+            display: flex; align-items: center; gap: 10px; cursor: pointer;
+            background: white; padding: 0.6rem 1rem; border-radius: 1rem;
+            transition: var(--transition); border: 1px solid #eef2f8;
+        }
+        .quiz-option:hover { background: #f0f6fa; border-color: #cddfe7; }
+        .quiz-option input[type="radio"] { width: 18px; height: 18px; accent-color: var(--orange); cursor: pointer; }
+        .quiz-option.correct-answer { background: #d4edda; border-color: #2b9348; }
+        .quiz-option.wrong-answer { background: #fce4e4; border-color: #d94535; }
+        .quiz-feedback { margin-top: 0.5rem; font-weight: 600; font-size: 0.85rem; min-height: 1.5rem; }
+        .feedback-correct { color: #1f6e34; }
+        .feedback-wrong { color: #c0392b; }
+
+        .btn-row { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; margin-top: 1.5rem; }
+        .btn {
+            padding: 0.8rem 2rem; font-family: 'Vazirmatn', sans-serif; font-size: 0.95rem;
+            font-weight: 700; border-radius: 3rem; cursor: pointer; transition: var(--transition);
+            border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+        }
+        .btn-primary { background: linear-gradient(95deg, #2b9348, #238b3f); color: white; box-shadow: 0 6px 16px rgba(35, 139, 63, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(35, 139, 63, 0.4); }
+        .btn-outline { background: white; color: var(--green-dark); border: 2px solid var(--green); }
+        .btn-outline:hover { background: var(--green-light); }
+
+        .toast-notify {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) scale(0.9);
+            background: linear-gradient(115deg, #1f3b2c, #113a25); color: #f3fff9;
+            padding: 0.9rem 2rem; border-radius: 60px; font-weight: 600; font-size: 1rem;
+            box-shadow: 0 20px 30px -12px black; z-index: 1000; opacity: 0; transition: 0.25s;
+            pointer-events: none; white-space: nowrap;
+        }
+        .toast-notify.show { opacity: 1; transform: translateX(-50%) scale(1); }
+
+        .footer-box {
+            margin-top: 1.5rem; text-align: center; background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(6px); border-radius: 2rem; padding: 0.9rem 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        .footer-text { font-size: 0.9rem; color: #2c3e50; font-weight: 500; }
+        .footer-text span { color: #1f6e3f; font-weight: 800; background: #eafaf1; padding: 0.2rem 0.8rem; border-radius: 30px; display: inline-block; }
+        .support-link { color: #2b9348; font-weight: 600; text-decoration: none; direction: ltr; display: inline-block; margin-top: 0.3rem; font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            .stage-card { padding: 1.5rem 1rem; }
+            .stage-header h1 { font-size: 1.4rem; }
+            .lesson-section { padding: 1rem; font-size: 0.9rem; }
+            .btn { padding: 0.7rem 1.5rem; font-size: 0.85rem; }
+            .exercise-grid { grid-template-columns: 1fr; }
+            .code-block { font-size: 0.75rem; }
+            .analogy-box { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <div class="stage-card">
+            <div class="stage-header">
+                <span class="stage-badge-top">📚 مرحله ۷ از ۳۱</span>
+                <h1>📦 متغیرها (Variables) در پایتون</h1>
+                <p class="subtitle">یاد می‌گیری چطور اطلاعات رو توی برنامه ذخیره کنی و بعداً استفاده کنی!</p>
+            </div>
+
+            <div style="text-align:center;">
+                <div class="user-greeting" id="userGreeting">
+                    👋 سلام، <strong id="userNameDisplay">دانشجو</strong> جان! امروز با جعبه‌های جادویی پایتون آشنا میشیم 📦
+                </div>
+            </div>
+
+            <div class="lesson-section">
+                <h2>📦 متغیر یعنی چی؟ بیا با یه مثال ساده بفهمیم!</h2>
+                <p>
+                    تصور کن یه <strong>کمد لباس</strong> توی خونه داری. این کمد چندتا <strong>کشو</strong> داره.
+                    روی هر کشو یه <strong>برچسب</strong> زدی: «جوراب»، «تی‌شرت»، «شلوار».
+                    حالا هر وقت جوراب خواستی، لازم نیست کل خونه رو بگردی! فقط کافیه بری سراغ کشویی که روش نوشته «جوراب».
+                </p>
+
+                <div class="analogy-box">
+                    <div class="analogy-icon">🗄️</div>
+                    <div class="analogy-text">
+                        <h4>متغیر دقیقاً مثل کشوی برچسب‌داره!</h4>
+                        <p>
+                            <strong>اسم متغیر</strong> = همون برچسب روی کشو<br>
+                            <strong>مقدار متغیر</strong> = چیزایی که داخل کشو می‌ذاری<br>
+                            هر وقت خواستی ازش استفاده کنی، فقط اسمش رو صدا می‌زنی!
+                        </p>
+                    </div>
+                </div>
+
+                <p>
+                    <strong>متغیر (Variable)</strong> یه جعبه یا ظرف توی حافظه کامپیوتره که
+                    می‌تونی <strong>یه مقدار توش بذاری</strong>، بعداً <strong>تغییرش بدی</strong>،
+                    و هر وقت خواستی <strong>ازش استفاده کنی</strong>. اسمش رو هم خودت انتخاب می‌کنی!
+                </p>
+
+                <div class="highlight-box green">
+                    <strong>🎯 تعریف ساده:</strong> Variable = یک اسم برای یک مقدار.
+                    مثل اینکه به عدد 25 بگی <span class="code-inline">age</span> (سن).
+                    از این به بعد هرجا بنویسی age، پایتون می‌فهمه منظورت 25 هست!
+                </div>
+
+                <h2>✍️ چطور یه متغیر بسازیم؟</h2>
+                <p>ساختن متغیر در پایتون <strong>خیلی آسونه</strong>! فقط کافیه:</p>
+                <ol>
+                    <li>یه <strong>اسم</strong> انتخاب کنی</li>
+                    <li>علامت <strong>مساوی (=)</strong> بذاری</li>
+                    <li><strong>مقدار</strong> مورد نظر رو بنویسی</li>
+                </ol>
+
+                <div class="code-block">
+<span class="comment"># ساخت یک متغیر به اسم name و ریختن مقدار "Ali" توش</span>
+<span class="var-name">name</span> = <span class="string">"Ali"</span>
+
+<span class="comment"># ساخت یک متغیر به اسم age و ریختن عدد 20 توش</span>
+<span class="var-name">age</span> = <span class="number">20</span>
+
+<span class="comment"># ساخت یک متغیر به اسم height و ریختن عدد اعشاری 1.75 توش</span>
+<span class="var-name">height</span> = <span class="number">1.75</span>
+
+<span class="comment"># حالا می‌تونیم این متغیرها رو چاپ کنیم!</span>
+<span class="keyword">print</span>(<span class="var-name">name</span>)
+<span class="keyword">print</span>(<span class="var-name">age</span>)
+<span class="keyword">print</span>(<span class="var-name">height</span>)
+                </div>
+                <p><strong>خروجی:</strong></p>
+                <div class="code-block">
+Ali
+20
+1.75
+                </div>
+
+                <div class="highlight-box orange">
+                    <strong>🧠 نکته مهم:</strong> علامت = در پایتون به معنی «مساوی بودن» نیست!
+                    به معنی <strong>«برو مقدار سمت راست رو بریز توی متغیر سمت چپ»</strong> هست.
+                    همیشه اول سمت راست محاسبه میشه، بعد نتیجه می‌ره توی متغیر سمت چپ.
+                </div>
+
+                <h2>📝 قوانین نام‌گذاری متغیرها</h2>
+                <p>برای اسم متغیرها باید <strong>حتماً</strong> این قوانین رو رعایت کنی، وگرنه پایتون خطا میده:</p>
+
+                <table class="error-table">
+                    <thead>
+                        <tr><th>✅ مجاز</th><th>❌ غیرمجاز</th><th>علت</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="err-name" style="color:#1f6e34;">name</td><td class="err-name">1name</td><td>اسم متغیر با عدد شروع نمی‌شود</td></tr>
+                        <tr><td class="err-name" style="color:#1f6e34;">my_name</td><td class="err-name">my-name</td><td>فقط از _ (آندرلاین) استفاده کن، خط تیره ممنوع!</td></tr>
+                        <tr><td class="err-name" style="color:#1f6e34;">age2</td><td class="err-name">age 2</td><td>اسم متغیر نمی‌تواند فاصله داشته باشد</td></tr>
+                        <tr><td class="err-name" style="color:#1f6e34;">userName</td><td class="err-name">class</td><td>از کلمات کلیدی پایتون استفاده نکن</td></tr>
+                        <tr><td class="err-name" style="color:#1f6e34;">_private</td><td class="err-name">@email</td><td>فقط حروف، اعداد و _ مجاز است</td></tr>
+                    </tbody>
+                </table>
+
+                <p><strong>خلاصه قوانین:</strong></p>
+                <ul>
+                    <li>✅ می‌تونه شامل حروف انگلیسی (a-z, A-Z)، اعداد (0-9) و آندرلاین (_) باشه</li>
+                    <li>❌ <strong>نمی‌تونه با عدد شروع بشه</strong></li>
+                    <li>❌ <strong>نمی‌تونه فاصله یا کاراکتر خاص داشته باشه</strong></li>
+                                     <li>❌ <strong>نمی‌تونه از کلمات کلیدی پایتون باشه</strong> (مثل print, if, for, class)</li>
+                    <li>⚠️ پایتون به <strong>بزرگ و کوچک بودن حروف حساسه!</strong> (name و Name و NAME سه متغیر متفاوت هستن!)</li>
+                </ul>
+
+                <h2>🔄 تغییر مقدار متغیر</h2>
+                <p>
+                    همونطور که می‌تونی محتویات کشو رو عوض کنی، می‌تونی <strong>مقدار متغیر رو هم تغییر بدی</strong>.
+                    مقدار جدید <strong>جایگزین</strong> مقدار قبلی میشه. مقدار قدیمی برای همیشه از دست می‌ره!
+                </p>
+
+                <div class="code-block">
+<span class="comment"># اول یک متغیر می‌سازیم</span>
+<span class="var-name">score</span> = <span class="number">10</span>
+<span class="keyword">print</span>(<span class="var-name">score</span>)   <span class="comment"># خروجی: 10</span>
+
+<span class="comment"># حالا مقدارش رو تغییر می‌دیم</span>
+<span class="var-name">score</span> = <span class="number">25</span>
+<span class="keyword">print</span>(<span class="var-name">score</span>)   <span class="comment"># خروجی: 25 (مقدار 10 دیگه وجود نداره!)</span>
+
+<span class="comment"># می‌تونیم از خود متغیر برای تغییر خودش استفاده کنیم!</span>
+<span class="var-name">score</span> = <span class="var-name">score</span> + <span class="number">5</span>
+<span class="keyword">print</span>(<span class="var-name">score</span>)   <span class="comment"># خروجی: 30 (25 + 5)</span>
+                </div>
+
+                <div class="highlight-box blue">
+                    <strong>💡 نکته جالب:</strong> پایتون اول سمت راست = رو <strong>کامل محاسبه می‌کنه</strong>،
+                    بعد نتیجه رو می‌ریزه توی متغیر سمت چپ. برای همین می‌تونی بنویسی
+                    <span class="code-inline">score = score + 5</span>!
+                    پایتون میگه: خب ببینم score الان چنده؟ 25. با 5 جمع کن میشه 30. حالا 30 رو بریز توی score.
+                </div>
+
+                <h2>🧪 انواع داده‌هایی که می‌شه توی متغیر ریخت</h2>
+                <p>توی پایتون، متغیرها می‌تونن <strong>هر نوع داده‌ای</strong> رو توی خودشون نگه دارن:</p>
+
+                <div class="code-block">
+<span class="comment"># 1. رشته (String) - متن</span>
+<span class="var-name">message</span> = <span class="string">"Hello Python!"</span>
+<span class="var-name">country</span> = <span class="string">'Iran'</span>
+
+<span class="comment"># 2. عدد صحیح (Integer) - اعداد بدون اعشار</span>
+<span class="var-name">students</span> = <span class="number">30</span>
+<span class="var-name">temperature</span> = <span class="number">-5</span>
+
+<span class="comment"># 3. عدد اعشاری (Float) - اعداد با اعشار</span>
+<span class="var-name">pi</span> = <span class="number">3.14159</span>
+<span class="var-name">price</span> = <span class="number">99.99</span>
+
+<span class="comment"># 4. بولین (Boolean) - فقط True یا False</span>
+<span class="var-name">is_student</span> = <span class="keyword">True</span>
+<span class="var-name">is_raining</span> = <span class="keyword">False</span>
+                </div>
+
+                <h2>🖨️ استفاده از متغیرها با Print</h2>
+                <p>حالا که متغیر داری، می‌تونی باهاشون توی print کار کنی:</p>
+
+                <div class="code-block">
+<span class="comment"># تعریف متغیرها</span>
+<span class="var-name">name</span> = <span class="string">"Sara"</span>
+<span class="var-name">age</span> = <span class="number">22</span>
+<span class="var-name">city</span> = <span class="string">"Tehran"</span>
+
+<span class="comment"># چاپ مستقیم متغیر</span>
+<span class="keyword">print</span>(<span class="var-name">name</span>)
+<span class="comment"># خروجی: Sara</span>
+
+<span class="comment"># ترکیب متن و متغیر با کاما</span>
+<span class="keyword">print</span>(<span class="string">"Name:"</span>, <span class="var-name">name</span>, <span class="string">"Age:"</span>, <span class="var-name">age</span>)
+<span class="comment"># خروجی: Name: Sara Age: 22</span>
+
+<span class="comment"># ترکیب با f-string (بهترین روش!)</span>
+<span class="keyword">print</span>(<span class="string">f"My name is {name} and I am {age} years old"</span>)
+<span class="comment"># خروجی: My name is Sara and I am 22 years old</span>
+
+<span class="comment"># محاسبه با متغیرها</span>
+<span class="var-name">a</span> = <span class="number">15</span>
+<span class="var-name">b</span> = <span class="number">25</span>
+<span class="keyword">print</span>(<span class="var-name">a</span> + <span class="var-name">b</span>)
+<span class="comment"># خروجی: 40</span>
+                </div>
+
+                <h2>🎯 چرا متغیرها اینقدر مهم هستن؟</h2>
+                <p>بدون متغیر، برنامه‌نویسی تقریباً غیرممکنه! ببین چقدر کاربرد دارن:</p>
+                <ul>
+                    <li>📊 <strong>ذخیره اطلاعات کاربر:</strong> اسم، سن، ایمیل، رمز عبور</li>
+                    <li>🧮 <strong>انجام محاسبات:</strong> جمع، تفریق، میانگین، فرمول‌های ریاضی</li>
+                    <li>🎮 <strong>بازی‌ها:</strong> امتیاز (score)، تعداد جان‌ها (lives)، سطح (level)</li>
+                    <li>🛒 <strong>فروشگاه:</strong> قیمت، تعداد، مجموع خرید، تخفیف</li>
+                    <li>📱 <strong>اپلیکیشن‌ها:</strong> تنظیمات کاربر، پیام‌ها، نوتیفیکیشن‌ها</li>
+                </ul>
+
+                <h2>⚠️ خطاهای رایج در کار با متغیرها</h2>
+                <table class="error-table">
+                    <thead>
+                        <tr><th>نام خطا</th><th>علت</th><th>راه‌حل</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="err-name">NameError</td>
+                            <td>استفاده از متغیر قبل از تعریف</td>
+                            <td>اول متغیر رو با = تعریف کن، بعد استفاده کن</td>
+                        </tr>
+                        <tr>
+                            <td class="err-name">NameError</td>
+                            <td>غلط املایی در اسم متغیر</td>
+                            <td>اسم متغیر رو چک کن. مثلاً name رو اشتباهی nmae نوشتی!</td>
+                        </tr>
+                        <tr>
+                            <td class="err-name">NameError</td>
+                            <td>بزرگ و کوچک بودن حروف</td>
+                            <td>Name با name فرق داره! حواست به حروف بزرگ و کوچک باشه</td>
+                        </tr>
+                        <tr>
+                            <td class="err-name">SyntaxError</td>
+                            <td>شروع اسم متغیر با عدد</td>
+                            <td>مثلاً 1name غلطه، بنویس name1 یا first_name</td>
+                        </tr>
+                        <tr>
+                            <td class="err-name">SyntaxError</td>
+                            <td>استفاده از فاصله یا کاراکتر خاص</td>
+                            <td>بجای my name بنویس my_name، بجای user@name بنویس username</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box red">
+                    <strong>⚠️ اشتباه خیلی رایج:</strong> فراموش کردن کوتیشن برای رشته‌ها!
+                    <br><span class="code-inline">name = Ali</span> ❌ غلط! (پایتون فکر می‌کنه Ali یه متغیره)
+                    <br><span class="code-inline">name = "Ali"</span> ✅ درست! (پایتون می‌فهمه Ali یه رشته است)
+                </div>
+
+                <h2>✏️ نکات تکمیلی و ترفندهای متغیرها</h2>
+
+                <h3>🔹 تعریف چند متغیر در یک خط</h3>
+                <div class="code-block">
+<span class="comment"># تعریف سه متغیر در یک خط</span>
+<span class="var-name">x</span>, <span class="var-name">y</span>, <span class="var-name">z</span> = <span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>
+<span class="keyword">print</span>(<span class="var-name">x</span>, <span class="var-name">y</span>, <span class="var-name">z</span>)
+<span class="comment"># خروجی: 10 20 30</span>
+
+<span class="comment"># تعریف یک مقدار به چند متغیر</span>
+<span class="var-name">a</span> = <span class="var-name">b</span> = <span class="var-name">c</span> = <span class="number">0</span>
+<span class="keyword">print</span>(<span class="var-name">a</span>, <span class="var-name">b</span>, <span class="var-name">c</span>)
+<span class="comment"># خروجی: 0 0 0</span>
+                </div>
+
+                <h3>🔹 جا به جا کردن مقادیر دو متغیر</h3>
+                <div class="code-block">
+<span class="var-name">first</span> = <span class="string">"Red"</span>
+<span class="var-name">second</span> = <span class="string">"Blue"</span>
+
+<span class="comment"># جا به جایی در یک خط!</span>
+<span class="var-name">first</span>, <span class="var-name">second</span> = <span class="var-name">second</span>, <span class="var-name">first</span>
+
+<span class="keyword">print</span>(<span class="var-name">first</span>)
+<span class="comment"># خروجی: Blue</span>
+<span class="keyword">print</span>(<span class="var-name">second</span>)
+<span class="comment"># خروجی: Red</span>
+                </div>
+
+                <h3>🔹 حذف یک متغیر</h3>
+                <div class="code-block">
+<span class="var-name">temp</span> = <span class="string">"I will be deleted"</span>
+<span class="keyword">print</span>(<span class="var-name">temp</span>)
+<span class="comment"># خروجی: I will be deleted</span>
+
+<span class="keyword">del</span> <span class="var-name">temp</span>
+<span class="comment"># حالا اگه print(temp) بزنی، خطای NameError می‌گیری!</span>
+                </div>
+
+                <h2>🧪 تمرین‌های عملی متغیرها</h2>
+                <p>روی هر کارت کلیک کن تا پاسخ را ببینی! (اول خودت حل کن، بعد جواب رو چک کن!)</p>
+
+                <div class="exercise-grid">
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۱</div>
+                                <div class="ex-text">اسمت رو توی متغیر name بریز و چاپ کن</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب رو ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code">name = "Amir"
+print(name)
+# خروجی: Amir</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۲</div>
+                                <div class="ex-text">دو عدد رو در متغیر بریز و جمعشون رو چاپ کن</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب رو ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code">a = 15
+b = 35
+print(a + b)
+# خروجی: 50</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۳</div>
+                                <div class="ex-text">مقدار متغیر x رو از 10 به 20 تغییر بده و چاپ کن</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب رو ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code">x = 10
+print(x)  # 10
+x = 20
+print(x)  # 20</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۴</div>
+                                <div class="ex-text">با f-string اسم و سنت رو در یک جمله چاپ کن</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب رو ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code">name = "Sara"
+age = 22
+print(f"My name is {name} and I am {age}")
+# خروجی: My name is Sara and I am 22</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۵</div>
+                                <div class="ex-text">طول و عرض مستطیل رو در متغیر بریز و مساحتش رو چاپ کن</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب رو ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code">length = 10
+width = 5
+area = length * width
+print(area)
+# خروجی: 50</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="ex-num">۶</div>
+                                <div class="ex-text">مقادیر دو متغیر a و b رو با هم عوض کن</div>
+                                <div class="ex-hint">👆 کلیک کن تا جواب رو ببینی</div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="answer-label">✅ پاسخ:</div>
+                                <div class="answer-code">a = "First"
+b = "Second"
+a, b = b, a
+print(a)  # Second
+print(b)  # First</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- بخش آزمون -->
+            <div class="quiz-section" id="quizSection">
+                <h3>📝 آزمون مرحله ۷ - متغیرها</h3>
+                <p style="text-align:center;color:var(--text-light);margin-bottom:1rem;font-size:0.85rem;">
+                    ببینیم متغیرها رو چقدر خوب یاد گرفتی؟ (اختیاری)
+                </p>
+
+                <div class="quiz-item" data-question="1" data-correct="4">
+                    <div class="quiz-question">۱. بعد از اجرای کد <span class="code-inline">x = 5</span> و <span class="code-inline">x = 10</span>، مقدار x چیست؟</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q1" value="1"> 5</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="2"> 15</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="3"> undefined</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="4"> 10</label>
+                    </div>
+                    <div class="quiz-feedback" id="feedback1"></div>
+                </div>
+
+                <div class="quiz-item" data-question="2" data-correct="2">
+                    <div class="quiz-question">۲. کدام اسم متغیر <strong>نادرست</strong> است؟</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q2" value="1"> my_name</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="2"> 2nd_place</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="3"> userName</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="4"> _private</label>
+                    </div>
+                    <div class="quiz-feedback" id="feedback2"></div>
+                </div>
+
+                <div class="quiz-item" data-question="3" data-correct="1">
+                    <div class="quiz-question">۳. خروجی <span class="code-inline">print(name)</span> وقتی name = "Ali" است چیست؟</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q3" value="1"> Ali</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="2"> name</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="3"> "Ali"</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="4"> خطا</label>
+                    </div>
+                    <div class="quiz-feedback" id="feedback3"></div>
+                </div>
+
+                <div class="quiz-item" data-question="4" data-correct="3">
+                    <div class="quiz-question">۴. کدام کد خطا نمی‌دهد؟</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q4" value="1"> print(x) (وقتی x تعریف نشده)</label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="2"> 1name = "test"</label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="3"> name = "Ali"</label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="4"> my name = "Ali"</label>
+                    </div>
+                    <div class="quiz-feedback" id="feedback4"></div>
+                </div>
+
+                <div class="quiz-item" data-question="5" data-correct="2">
+                    <div class="quiz-question">۵. خروجی کد <span class="code-inline">a, b = 10, 20</span> و <span class="code-inline">print(a + b)</span> چیست؟</div>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q5" value="1"> 10 20</label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="2"> 30</label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="3"> a + b</label>
+                        <label class="quiz-option"><input type="radio" name="q5" value="4"> خطا</label>
+                    </div>
+                    <div class="quiz-feedback" id="feedback5"></div>
+                </div>
+
+                <div style="text-align:center;margin-top:1.5rem;">
+                    <button class="btn btn-primary" id="checkQuizBtn">✅ بررسی پاسخ‌ها</button>
+                </div>
+                <div id="quizResultMsg" style="text-align:center;margin-top:0.8rem;font-weight:700;min-height:1.5rem;"></div>
+            </div>
+
+            <div class="btn-row">
+                <a href="../dashboard.html" class="btn btn-outline">🏠 بازگشت به داشبورد</a>
+                <a href="stage-06.html" class="btn btn-outline">⬅️ مرحله قبلی</a>
+                <a href="stage-08.html" class="btn btn-primary">🚀 مرحله بعد: مرور و جمع‌بندی</a>
+            </div>
+        </div>
+
+        <div class="footer-box">
+            <div class="footer-text">✨ طراح: <span>بردیا فاتحی</span> ✨</div>
+            <div>📩 پشتیبانی: <a class="support-link" href="https://t.me/Fatehi_Academy_Support" target="_blank">@Fatehi_Academy_Support</a></div>
+        </div>
+    </div>
+
+        <div id="toastMsg" class="toast-notify"></div>
+
+    <script>
+        (function() {
+            const userNameDisplay = document.getElementById('userNameDisplay');
+            const checkQuizBtn = document.getElementById('checkQuizBtn');
+            const quizResultMsg = document.getElementById('quizResultMsg');
+            const toastMsg = document.getElementById('toastMsg');
+            const particlesContainer = document.getElementById('particles');
+
+            function createParticles() {
+                const colors = ['#e07b5a', '#f0a500', '#4a90d9', '#2b9348', '#7c5cbf'];
+                for (let i = 0; i < 16; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    const size = Math.random() * 14 + 5;
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.bottom = '-20px';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (Math.random() * 7 + 5) + 's';
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            createParticles();
+
+            function showToast(message, isSuccess = true) {
+                toastMsg.textContent = message;
+                toastMsg.style.background = isSuccess ? 'linear-gradient(115deg, #1f3b2c, #113a25)' : 'linear-gradient(115deg, #5c1a1a, #8b2020)';
+                toastMsg.classList.remove('show');
+                void toastMsg.offsetWidth;
+                toastMsg.classList.add('show');
+                setTimeout(() => { toastMsg.classList.remove('show'); }, 2800);
+            }
+
+            const userData = JSON.parse(localStorage.getItem('python_academy_user') || 'null');
+            if (userData && userData.fullName) {
+                userNameDisplay.textContent = userData.fullName;
+            }
+
+            checkQuizBtn.addEventListener('click', () => {
+                const quizItems = document.querySelectorAll('.quiz-item');
+                let allCorrect = true;
+                let allAnswered = true;
+                let correctCount = 0;
+                const totalQuestions = quizItems.length;
+
+                document.querySelectorAll('.quiz-feedback').forEach(fb => { fb.textContent = ''; fb.className = 'quiz-feedback'; });
+                document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('correct-answer', 'wrong-answer'));
+
+                quizItems.forEach(item => {
+                    const questionNum = item.getAttribute('data-question');
+                    const correctAnswer = item.getAttribute('data-correct');
+                    const selectedRadio = item.querySelector(`input[name="q${questionNum}"]:checked`);
+                    const feedbackEl = document.getElementById('feedback' + questionNum);
+
+                    if (!selectedRadio) {
+                        allAnswered = false;
+                        allCorrect = false;
+                        feedbackEl.textContent = '⚠️ Please select an option!';
+                        feedbackEl.className = 'quiz-feedback feedback-wrong';
+                        return;
+                    }
+
+                    const selectedValue = selectedRadio.value;
+                    const selectedOption = selectedRadio.closest('.quiz-option');
+
+                    if (selectedValue === correctAnswer) {
+                        correctCount++;
+                        selectedOption.classList.add('correct-answer');
+                        feedbackEl.textContent = '✅ Correct!';
+                        feedbackEl.className = 'quiz-feedback feedback-correct';
+                    } else {
+                        allCorrect = false;
+                        selectedOption.classList.add('wrong-answer');
+                        const correctOption = item.querySelector(`input[value="${correctAnswer}"]`).closest('.quiz-option');
+                        correctOption.classList.add('correct-answer');
+                        feedbackEl.textContent = '❌ Wrong! The correct answer is highlighted in green.';
+                        feedbackEl.className = 'quiz-feedback feedback-wrong';
+                    }
+                });
+
+                if (!allAnswered) {
+                    quizResultMsg.innerHTML = '<span style="color:#d94535;">⚠️ Please answer all questions!</span>';
+                    return;
+                }
+
+                if (allCorrect) {
+                    quizResultMsg.innerHTML = '<span style="color:#1f6e34;">🎉 Congratulations! You have mastered Variables!</span>';
+                    showToast('🎉 Excellent! Ready for the review session!', true);
+                } else {
+                    const wrongCount = totalQuestions - correctCount;
+                    quizResultMsg.innerHTML = `<span style="color:#d94535;">😔 ${wrongCount} wrong answer(s). Check the green options and try again!</span>`;
+                }
+            });
+
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio) radio.checked = true;
+                });
+            });
+
+            console.log('🐍 Stage 7: Variables | Bardia Fatehi Academy');
+        })();
+    </script>
+</body>
+</html>
